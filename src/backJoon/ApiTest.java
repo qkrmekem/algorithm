@@ -10,8 +10,8 @@ import java.io.IOException;
 public class ApiTest {
     public static void main(String[] args) throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "JkBNH7W%2BOmrwQ2vxjH0euCJrc0RxtFAWsFGrlOKcR2GAJy0O8%2FuyAGBWIllx0jSX3nxp2XCGSMv%2FyCKiXgYKXg%3D%3D"); /*Service Key*/
-//        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "JkBNH7W+OmrwQ2vxjH0euCJrc0RxtFAWsFGrlOKcR2GAJy0O8/uyAGBWIllx0jSX3nxp2XCGSMv/yCKiXgYKXg=="); /*Service Key*/
+//        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "JkBNH7W%2BOmrwQ2vxjH0euCJrc0RxtFAWsFGrlOKcR2GAJy0O8%2FuyAGBWIllx0jSX3nxp2XCGSMv%2FyCKiXgYKXg%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "JkBNH7W+OmrwQ2vxjH0euCJrc0RxtFAWsFGrlOKcR2GAJy0O8/uyAGBWIllx0jSX3nxp2XCGSMv/yCKiXgYKXg=="); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("desc_kor","UTF-8") + "=" + URLEncoder.encode("하리보", "UTF-8")); /*식품이름*/
 //        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 //        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("3", "UTF-8")); /*한 페이지 결과 수*/
