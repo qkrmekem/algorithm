@@ -34,7 +34,7 @@ public class TikTacToeAlone {
             if(board[i].charAt(2-i) == 'O'){
                 tmpr++;
             }else if(board[i].charAt(2-i) =='X'){
-                tmpxl++;
+                tmpxr++;
             }
             // ox의 개수를 세기 위한 반복문
             for(int y = 0; y < board.length; y++){
@@ -47,7 +47,7 @@ public class TikTacToeAlone {
                 }
             }
         }
-
+        // 각 열이 3개면 정답
         for(int i = 0; i < arr.length; i++){
             if(arr[i] == 3){
                 x = true;
@@ -55,19 +55,18 @@ public class TikTacToeAlone {
             if(arro[i] == 3){
                 o = true;
             }
-
+            // 대각선에 3개가 있으면 정답
         }
         if(tmpl == 3 || tmpr == 3){
             o = true;
         }else if(tmpxl == 3 || tmpxr == 3){
             x = true;
         }
+
         if(cnto==cntx+1 && x == false){
             answer = 1;
         }else if(cnto == cntx){
-            if(cnto<3){
-                answer = 1;
-            }else if(o==false){
+            if(o==false){
                 answer = 1;
             }else{
                 answer = 0;
