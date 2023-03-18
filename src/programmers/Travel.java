@@ -1,69 +1,78 @@
 package programmers;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Travel {
-    int[][] map;
-    List<Integer> answer = new LinkedList<>();
+    static int dx[] = {-1,1,0,0};
+    static int dy[] = {0,0,-1,1};
 
-    public int[] solution(String[] maps) {
 
-        // int 배열로 변환
-        map = new int[maps.length][maps[0].length()];
-        for(int i=0; i<maps.length; i++) {
-            char[] mapCharArr = maps[i].toCharArray();
+    static boolean visited[][];
+    static char[][] map;
+    static ArrayList<Integer> answer = new ArrayList<>();
 
-            for(int j=0; j<mapCharArr.length; j++) {
-                char c = mapCharArr[j];
+    public Integer[] solution(String[] maps) {
+        visited = new boolean[maps.length][maps[0].length()];
 
-                if(c == 'X' || c == 'x') {
-                    map[i][j] = -1;
-                }
-                else {
-                    // 1~9 라서 이렇게 해도 충분함.
-                    map[i][j] = c - '0';
+        map = new char[maps.length][maps[0].length()];
+
+        for(int i=0; i<maps.length; i++){
+            for(int j=0; j<maps[0].length(); j++){
+                map[i][j] = maps[i].charAt(j);
+            }
+        }
+
+        for(int i=0; i<maps.length; i++){
+            for(int j=0; j<maps[0].length(); j++){
+                if(!visited[i][j] && maps[i].charAt(j) != 'X'){
+                    bfs(new Pos(i, j));
                 }
             }
         }
 
-        // dfs 알고리즘 수행
-        for(int i=0; i<map.length; i++) {
-            for(int j=0; j<map[0].length; j++) {
-                int islandSum = dfs(i, j);
-                if(islandSum > 0) {
-                    answer.add(islandSum);
-                }
-            }
-        }
-
-        // 무인도가 없으면 return -1
-        if(answer.size() == 0) return new int[]{-1};
-
-        // 무인도가 있으면 Sort후 int[] 형태로 반환
         Collections.sort(answer);
-        int[] answerArr = new int[answer.size()];
 
-        for(int i=0; i<answerArr.length; i++) answerArr[i] = answer.get(i);
+        if(answer.size() == 0) answer.add(-1);
 
-        return answerArr;
+        return answer.toArray(new Integer[0]);
+    }
+    public static void bfs(Pos start){
+        Queue<Pos> q = new LinkedList<>();
+        q.add(start);
+        visited[start.x][start.y] = true;
+
+        int sum = 0;
+        while(!q.isEmpty()){
+            Pos cur = q.poll();
+
+            sum += map[cur.x][cur.y] - '0';
+            for(int i=0; i<4; i++){
+                int nx = cur.x + dx[i];
+                int ny = cur.y + dy[i];
+
+                if(check(nx,ny) && !visited[nx][ny]){
+                    q.add(new Pos(nx,ny));
+                    visited[nx][ny] = true;
+                }
+            }
+        }
+        answer.add(sum);
+
+
     }
 
-    public int dfs(int i, int j) {
-        // 배열의 범위를 벗어나면 return
-        if(i<0 || j<0 || i>=map.length || j>=map[0].length) {
-            return 0;
-        }
-        // 이미 연산 대상에 포함된 상태면 return
-        if(map[i][j] == -1) {
-            return 0;
-        }
+    public static boolean check(int nx, int ny){
+        return (nx >=0 && nx < map.length && ny >=0 && ny <map[0].length
+                && map[nx][ny] != 'X') ? true : false;
+    }
 
-        int tmp = map[i][j];
-        map[i][j] = -1; // 들른 상태 저장
+}
 
-        // 사방으로 진행하며 같은 구역에 있는 값 탐색
-        return tmp + dfs(i-1, j) + dfs(i+1, j) + dfs(i, j-1) + dfs(i, j+1);
+class Pos{
+    int x, y;
+
+    public Pos(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
