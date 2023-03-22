@@ -1,6 +1,6 @@
 package programmers;
 
-public class programmers_숫자변환하기 {
+public class Programmers_숫자변환하기 {
     static int MAX = Integer.MAX_VALUE;
 
     public int solution(int x, int y, int n) {
