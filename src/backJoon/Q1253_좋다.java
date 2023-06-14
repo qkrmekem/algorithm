@@ -19,9 +19,10 @@ public class Q1253_좋다 {
         for (int i = 0; i < n; i++){
             int start = 0;
             int end = n-1;
-            long sum = arr[i];
+            long target = arr[i];
             while (start<end){
-                if (arr[start] + arr[end] == sum){
+                long sum = arr[start] + arr[end];
+                if (sum == target){
                     if (start != i && end != i){
                         count++;
                         break;
@@ -30,7 +31,7 @@ public class Q1253_좋다 {
                     } else if (end == i) {
                         end--;
                     }
-                }else if(arr[start] + arr[end] < sum){
+                }else if(sum < target){
                     start++;
                 }else {
                     end--;
