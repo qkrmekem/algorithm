@@ -1,3 +1,5 @@
+package backJoon;
+
 import java.util.*;
 
 public class Q1874_스택수열 {
