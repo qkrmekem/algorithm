@@ -1,4 +1,4 @@
-package backJoon;
+package backJoon.twopointer;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package backJoon;
+package backJoon.slidingwindow;
 
 import java.io.*;
 import java.util.*;

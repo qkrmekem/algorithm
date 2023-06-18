@@ -1,4 +1,4 @@
-package backJoon;
+package backJoon.queue;
 
 import java.util.*;
 

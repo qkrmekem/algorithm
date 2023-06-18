@@ -1,4 +1,4 @@
-package backJoon;
+package backJoon.stack;
 
 import java.util.*;
 import java.io.*;

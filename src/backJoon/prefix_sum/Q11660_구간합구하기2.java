@@ -1,4 +1,4 @@
-package backJoon;
+package backJoon.prefix_sum;
 
 import java.io.*;
 import java.util.*;
