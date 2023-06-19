@@ -13,14 +13,21 @@ public class Q2751_수정렬하기2 {
         arr = new int[n+1];
         // 임시 배열
         tmp = new int[n + 1];
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             arr[i] = sc.nextInt();
         }
         merge(1, n);
+        StringBuffer sb = new StringBuffer();
+        for (int i = 1; i <= n; i++) {
+            sb.append(arr[i] + "\n");
+        }
+        System.out.println(sb.toString());
     }
 
     public static void merge(int s, int e) {
         // 각 구간의 길이가 1보다 작거나 같으면 이미 해당 구간은 정렬이 완료된 상태이므로 return수행
+        // 최소 길이인 1까지 배열이 분리되었다면 return이 수행되어 직전 재귀함수로 돌아가고,
+        // 구간의 길이는 2가 됨
         if (e - s < 1) {
             return;
         }
