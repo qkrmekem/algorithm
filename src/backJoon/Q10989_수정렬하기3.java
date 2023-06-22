@@ -1,9 +1,28 @@
 package backJoon;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Q10989_수정렬하기3 {
-    public static void main(String[] args) throws IOException{
+//    public static void main(String[] args) throws IOException{
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        int n = Integer.parseInt(br.readLine());
+//
+//        int[] arr = new int[n];
+//        for (int i = 0; i < n; i++) {
+//            arr[i] = Integer.parseInt(br.readLine());
+//        }
+//        radix(arr, 5);
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//        for (int i = 0; i < n; i++) {
+//            bw.write(arr[i] + "\n");
+//        }
+//        bw.flush();
+//        bw.close();
+//        br.close();
+//    }
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
@@ -11,7 +30,7 @@ public class Q10989_수정렬하기3 {
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
-        radix(arr, 5);
+        Arrays.sort(arr);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         for (int i = 0; i < n; i++) {
             bw.write(arr[i] + "\n");
@@ -40,16 +59,16 @@ public class Q10989_수정렬하기3 {
             for (int i = 1; i < 10; i++) {
                 // 각 자리수의 끝 idx부터 1씩 감소하며 저장하기 위해 합배열 사용
                 // 예를 들어 0의 자리 데이터가 12개, 1의 자리 데이터가 10개가 있다고 한다면
-                // 0의 자리 데이터는 배열 인덱스의 11부터 0까지 1씩 감소하며 저장,
-                // 1의 자리 데이터는 배열 인덱스의 21부터 12까지 1씩 감소하며 저장.
+                // bucket[0] = 12
+                // bucket[1] = 22가 저장됨
                 bucket[i] += bucket[i - 1];
             }
             for (int i = arr.length - 1; i >= 0; i--) {
                 // 각 자리수마다 나뉜 구역의 끝 인덱스에 데이터를 저장
                 result[bucket[(arr[i] / jarisu % 10)] - 1] = arr[i];
                 // 다음 데이터를 위해 인덱스를 -1해줌
-                // 예를 들어 1의자리 데이터가 21번째 인덱스에 저장되었다면
-                // 다음 1의자리 데이터는 20번째 인덱스에 저장
+                // 예를 들어 1의자리 데이터(bucket[1])가 21번째 인덱스에 저장되었다면
+                // 다음 1의자리 데이터(bucket[1])는 20번째 인덱스에 저장
                 bucket[(arr[i] / jarisu % 10)]--;
             }
             for (int i = 0; i < arr.length; i++) {
