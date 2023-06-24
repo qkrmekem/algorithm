@@ -12,11 +12,15 @@ public class Q11724_연결요소의개수 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
+
         arr = new ArrayList[n+1];
+        // 1.방문 배열 초기화 하기
+        visited = new boolean[n + 1];
+
+        // 2.인접리스트 표헌하기
         for (int i = 1; i < n+1; i++) {
             arr[i] = new ArrayList<>();
         }
-        // 각 노드를 서로의 배열에 추가해주기
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int s = Integer.parseInt(st.nextToken());
@@ -26,6 +30,8 @@ public class Q11724_연결요소의개수 {
         }
         // 연결체가 몇개인지 저장할 변수
         int cnt = 0;
+        // 3.시작노드 스택에 담기
+        // 여기서는 스택 대신에 재귀함수를 통해 호출
         for (int i = 1; i < n + 1; i++) {
             // 해당 노드에 방문하지 않았다면
             if (!visited[i]) {
@@ -35,10 +41,11 @@ public class Q11724_연결요소의개수 {
                 dfs(i);
             }
         }
+        System.out.println(cnt);
     }
 
     static void dfs(int idx) {
-        // 현재 노드가 방문한 노드라면 재위호출을 끝내고 return
+        // 현재 노드가 방문한 노드라면 재귀호출을 끝내고 return
         if (visited[idx]) {
             return;
         }
