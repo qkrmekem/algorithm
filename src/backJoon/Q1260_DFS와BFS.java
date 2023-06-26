@@ -34,8 +34,8 @@ public class Q1260_DFS와BFS {
             Collections.sort(arr[i]);
         }
         dfs(v);
-        visited = new boolean[n+1];
         System.out.println();
+        visited = new boolean[n+1];
         bfs(v);
         System.out.println();
     }
@@ -51,17 +51,18 @@ public class Q1260_DFS와BFS {
     }
 
     public static void bfs(int node) {
-        System.out.println(node + " ");
         Queue<Integer> q = new LinkedList<>();
         q.add(node);
         visited[node] = true;
 
         while (!q.isEmpty()) {
             int now = q.poll();
-            System.out.println(now + " ");
+            System.out.print(now + " ");
             for (int i : arr[now]) {
-                visited[i] = true;
-                q.add(i);
+                if (!visited[i]) {
+                    visited[i] = true;
+                    q.add(i);
+                }
             }
         }
     }
