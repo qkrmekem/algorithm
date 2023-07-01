@@ -11,7 +11,6 @@ public class Q2343_기타레슨 {
         int m = Integer.parseInt(st.nextToken());
 
         int[] arr = new int[n+1];
-        int[] sum = new int[n+1];
         st = new StringTokenizer(br.readLine());
         int s = 0;
         int e = 0;
@@ -22,7 +21,10 @@ public class Q2343_기타레슨 {
             }
             e += arr[i];
         }
-        while (true) {
+        int result = 0;
+        int ls = 0;
+        int le = 0;
+        while (s <= e) {
             int mid = (s + e) / 2;
             int cnt = 1;
             int tmp = 0;
@@ -37,11 +39,18 @@ public class Q2343_기타레슨 {
                 s = mid + 1;
             }else {
                 e = mid - 1;
+                result = mid;
             }
-            if (s > e) {
-                System.out.println(s);
-                break;
-            }
+            ls = s;
+            le = e;
+//            if (s > e) {
+//                System.out.println(s);
+//                break;
+//            }
+            // s17 e16 mid16
         }
+        System.out.println(result);//17
+        System.out.println(ls);//17
+        System.out.println(le);//16
     }
 }
