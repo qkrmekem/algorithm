@@ -15,14 +15,13 @@ public class Q1325_효율적으로해킹하기 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
+        // 에지 정보를 담을 배열
         arr = new ArrayList[n + 1];
+
+        // 해킹할 수 있는 컴퓨터 수를 누적할 배열
         result = new int[n + 1];
 
-        // 방문 배열 초기화
-//        visited = new int[n + 1];
-//        for (int i = 1; i <= n; i++) {
-//            visited[i] = -1;
-//        }
+        // 방문 정보를 저장할 배열
         visited = new boolean[n + 1];
 
         for (int i = 1; i <= n; i++) {
@@ -37,9 +36,10 @@ public class Q1325_효율적으로해킹하기 {
             arr[s].add(e);
         }
 
+        // 반복문을 돌면서 각 노드에서 출발할 때 이어져 있는 컴퓨터를
         for (int i = 1; i <= n; i++) {
             if (!visited[i]) {
-                dfs(i, 1);
+                dfs(i);
                 visited = new boolean[n+1];
             }
         }
@@ -58,14 +58,13 @@ public class Q1325_효율적으로해킹하기 {
         }
     }
 
-    public static void dfs(int node, int depth) {
+    public static void dfs(int node) {
         visited[node] = true;
         result[node]++;
         for (int next : arr[node]) {
             if (!visited[next]) {
-                dfs(next, depth + 1);
+                dfs(next);
             }
         }
-//        visited[node] = -1;
     }
 }
